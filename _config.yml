@@ -1,6 +1,6 @@
 markdown: rdiscount
 permalink: /:title/
-url: "http://enginzhu.github.io"
+url: http://github.shanechu.com
 highlighter: pygments
 title: shane的随想录
 email: enginzhu@gmail.com
