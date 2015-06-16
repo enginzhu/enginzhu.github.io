@@ -3,11 +3,18 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="author" content="{{ site.author }}" />
-		<title>{% if page.path == 'index.html' %}{{ site.name }}{% else %}{% unless page.id %}{{ site.name }} - {% endunless %}{{ page.title }}{% endif %}</title>
+		<title>
+			{% if page.path == 'index.html' %}
+				{{ site.name }}
+			{% else %}
+				{% unless page.id %}{{ site.name }} - {% endunless %}{{ page.title }}
+			{% endif %}
+		</title>
 		<link rel="shortcut icon" href="/favicon.ico" />
 		<link href="/feed/" rel="alternate" title="{{ site.author }}" type="application/atom+xml" />
-		<link rel="stylesheet" href="/media/css/style.css" type="text/css" />
-		<link rel="stylesheet" href="/media/css/highlight.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="/media/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/media/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/media/css/prettify.css">
 	</head>
 	<body>
 		<div id="container">
@@ -19,9 +26,8 @@
 				<span><a title="网站首页" class="" href="/">首页</a></span>
 				<span><a title="文章分类" class="" href="/categories/">分类</a></span>
 				<span><a title="标签索引" class="" href="/tags/">标签</a></span>
-				<!--<span><a title="友情链接" class="" href="/links/">链接</a></span>-->
 				<span><a title="留言交流" class="" href="/guestbook/">留言</a></span>
-                                <span><a title="订阅本站" class="" href="/feed.xml">订阅</a></span>
+                <span><a title="订阅本站" class="" href="/feed.xml">订阅</a></span>
 				<span><a title="关于站长" class="" href="/about/">关于</a></span>
 				</nav>
 				<article class="content">
@@ -37,12 +43,20 @@
 
 		</div>
 
-		<script type="text/javascript" src="/media/js/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="/media/js/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="/media/js/prettify.js"></script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+		<script type="text/javascript">
+			$(function () {
+				$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto');
+				prettyPrint();//window.prettyPrint && prettyPrint();
+			});
+		</script>
 		<script type="text/x-mathjax-config">
 			MathJax.Hub.Config({
 				tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 			});
 		</script>
-		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
 	</body>
 </html>

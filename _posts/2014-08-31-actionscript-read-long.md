@@ -1,8 +1,9 @@
 ---
 layout: post
 title:  "谈谈ActionScript从字节流中读写long数据"
-date:   2014-08-31 18:12:23
+date:   2014-08-31 14:20:23
 categories: actionscript
+pygments: true
 ---
 
 ### Actionscript通信的方式
@@ -16,26 +17,28 @@ ActionScript使用 *ByteArray* 作为流载体。对于前者，*ByteArray* 提�
 
 *ByteArray* 没有直接的 `readLong` 方法。 考虑到 `long` 是一个64位的整型，*ActionScript* 里有读写32位 `integer` 的方法，所以我们可以分两次读取：即 **高32位的最高有效整数（most significant int）** 和 **低32位的最低有效整数（least significant int）**。 
 
-{% highlight actionscript linenos %}
+```
 var msi:uint = readUnsignedInt();
 var lsi:uint = readUnsignedInt();
 //把高32位的int向左移32位，再加上低32位，就是原始的long数据
 var long:Number = (msi << 32) + lsi;
-{% endhighlight actionscript %}
+```
 
 由于符号位的原因，我们这两次读取 *int* 不能直接 ***readInt***，而应该用 
 ***readUnsignedInt***。 看似完美解决。能正常工作吗？
 
 在*ActionScript* 里，*位移操作符（Bitwise Operator）*返回一个int，也就是32位整数。所以 `<<` 操作符只能用作32位以内的运算，否则会溢出。我们需要改成这样
-{% highlight actionscript linenos %}
+
+```
 /**
  * 正确组合高位和低位的数字
  */
 var long:Number = msi * 0x100000000 + lsi;
-{% endhighlight actionscript %}
+```
+
 我们可以设计一个用例来测试这段解析代码 
 
-{% highlight actionscript linenos %}
+```
 /**
  * 数据源为一个ByteArray，字节序为Big-Endian
  * 设64位long数据为0x0000 0000 0000 000f
@@ -45,7 +48,7 @@ ba.writeUnsignedInt(0x00000000);
 ba.writeUnsignedInt(0x0000000f);
 ba.position = 0;
 readLong(ba);
-{% endhighlight actionscript %}
+```
 最终结果输出为15
 
 ---
@@ -71,7 +74,7 @@ $$ 1111 1111 - （xxxxxxxx - 1）$$
 $$0x100 - xxxxxxxx$$
 由这条规则推导出： 
 
-> 对于一个 $n$ 位数 $number$，不管 $number$ 是原始数还是二补数，它们之间的转化都可以通 $2^n - number$ 获得
+> 对于一个 $n$ 位数 $number$，不管 $number$ 是原始数还是二补数，它们之间的转化都可以通过 $2^{n} - number$ 获得
 
 ### 64位二补数的还原
 
@@ -90,7 +93,7 @@ $$(0xFFFFFFFF \times 0x100000000 + 0x100000000)$$
 
 假定 ba 为 *byteArray* 对象，其 *position* 指向了其中一个待解析的64位long数据
 
-{% highlight actionscript linenos %}
+```
 var msi:Number = ba.readUnsignedInt();
 var lsi:Number = ba.readUnsignedInt();	
 var sign:Number = 1;
@@ -103,7 +106,7 @@ if ((msi & 0x80000000) != 0)
     sign = -1;
 }
 return sign * (msi * 0x100000000 + lsi);
-{% endhighlight actionscript %}
+```
 
 ---
 
@@ -114,18 +117,18 @@ return sign * (msi * 0x100000000 + lsi);
 
 - long为正整数的情况，无需计算二补数，将原始数直接写入流
 
-{% highlight actionscript linenos %}
+```
 var buffer:ByteArray = new ByteArray();
 var msi:Number, lsi:Number;
 msi = value / 0x100000000;
 lsi = value % 0x100000000;
 buffer.writeUnsignedInt(msi);
 buffer.writeUnsignedInt(lsi);
-{% endhighlight actionscript %}
+```
 
 - long为负整数的情况，沿用上面提到的方法计算二补数
 
-{% highlight actionscript linenos %}
+```
 var buffer:ByteArray = new ByteArray();
 var msi:Number, lsi:Number;
 var abs:Number = Math.abs(value);
@@ -139,11 +142,11 @@ if (lsi == 0x100000000)
 
 buffer.writeUnsignedInt(msi);
 buffer.writeUnsignedInt(lsi);
-{% endhighlight actionscript %}
+```
 
 **到现在为止，我们有足够的前置条件来写一个测试函数**
 
-{% highlight actionscript linenos %}
+```
 /**
  * 测试long数据的写入和读取
  */
@@ -155,11 +158,11 @@ private function test(number:Number):void
     var ret:Number = readLong(ba);
     trace(ret);
 }
-{% endhighlight actionscript %}
+```
 
 **扔一堆数据用例进去**
 
-{% highlight actionscript linenos %}
+```
 test(1);
 test(-1);
 test(1024);
@@ -170,11 +173,11 @@ test(-4294967296);
 test(-4294967297);
 test(8589934592);
 test(-8589934592);
-{% endhighlight actionscript %}
+```
 
 **最后输出**
 
-{% highlight actionscript linenos %}
+```
 1
 -1
 1024
@@ -185,8 +188,8 @@ test(-8589934592);
 -4294967297
 8589934592
 -8589934592
-{% endhighlight actionscript %}
+```
 
 
 
-（欢迎转载本站文章，请注明[出处]( {{ site.url }} ))
+（欢迎转载本站文章，请注明[作者](http://shanechu.com/about)和[出处](http://shanechu.com))
