@@ -1,0 +1,30 @@
+header {
+	margin: 0 auto;
+	width: 500px;
+	text-align: center;
+}
+.gridContainer {
+	width: 813px;
+	height: 453px;
+	margin: 0 auto;
+	border: 1px solid black;
+	position: relative;
+}
+.cell {
+	width: 10px;
+	height: 10px;
+	border: 0px solid black;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	box-sizing: border-box;
+}
+.snake {
+	background-color: black;
+}
+.walkable {
+	background-color: white;
+}
+.food {
+	background-color: red;
+}
