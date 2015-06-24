@@ -3,6 +3,7 @@ layout: post
 title: JavaScript 贪吃蛇游戏
 categories: JavaScript
 tags: game
+thread: snakegame
 ---
 
 端午节家里断网，用jQuery + CSS + HTML 写了一个[贪吃蛇小游戏](http://github.shanechu.com/snake/index.html)

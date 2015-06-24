@@ -3,7 +3,7 @@ layout: post
 title:  "谈谈ActionScript从字节流中读写long数据"
 date:   2014-08-31 14:20:23
 categories: actionscript
-pygments: true
+thread: readlong
 ---
 
 ### Actionscript通信的方式
