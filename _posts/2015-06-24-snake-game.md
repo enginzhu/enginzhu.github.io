@@ -10,4 +10,4 @@ thread: snakegame
 
 游戏主循环通过在`setTimeout`回调函数中重复调用`setTimeout`实现(后来发现`setInterval`可以重复执行回调)
 
-源码托管在github上：[贪吃蛇源码](http://github.com/enginzhu/snakegame)
+[贪吃蛇源码](https://github.com/enginzhu/enginzhu.github.io/tree/master/snake)
