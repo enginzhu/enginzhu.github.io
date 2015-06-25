@@ -8,6 +8,7 @@ const CELL_TYPE_FOOD = "food";
 
 var snakeBody = new Array();
 var direction = RIGHT;
+var directionCacheBeforeNextFrame;
 
 $(document).ready(function ()
 {
@@ -48,16 +49,16 @@ $(document).keydown(function (event)
 	switch (keyCode)
 	{
 		case 37:
-			direction = LEFT;
+			directionCacheBeforeNextFrame = LEFT;
 			break;
 		case 38:
-			direction = UP;
+			directionCacheBeforeNextFrame = UP;
 			break;
 		case 39:
-			direction = RIGHT;
+			 directionCacheBeforeNextFrame= RIGHT;
 			break;
 		case 40:
-			direction = DOWN;
+			directionCacheBeforeNextFrame = DOWN;
 			break;
 	}
 });	
@@ -95,11 +96,11 @@ function initSnake()
 
 	if (randomX >= MAP_COLUMN / 2)
 	{
-		direction = LEFT;
+		directionCacheBeforeNextFrame = LEFT;
 	}
 	else
 	{
-		direction = RIGHT;
+		directionCacheBeforeNextFrame = RIGHT;
 	}
 }
 
@@ -123,16 +124,18 @@ const RIGHT = "right"
 const DOWN = "down";
 const LEFT = "left";
 
-const UPDATE_FRAME_INTERVAL = 150;
+const UPDATE_FRAME_INTERVAL = 100;
+var loopInterval;
 
 function startFrameLoop()
 {
-	setTimeout(frameLoop, UPDATE_FRAME_INTERVAL);
+	loopInterval = setInterval(frameLoop, UPDATE_FRAME_INTERVAL);
 }
 
 
 function frameLoop()
 {
+	direction = directionCacheBeforeNextFrame;
 	var curHead = snakeBody[snakeBody.length - 1];
 	var newHeadType = pushSnakeHead(curHead);
 	if (newHeadType == null || newHeadType == CELL_TYPE_SNAKE_BODY)
@@ -143,13 +146,11 @@ function frameLoop()
 	else if (newHeadType == CELL_TYPE_FOOD)
 	{
 		initFood();
-		setTimeout(frameLoop, UPDATE_FRAME_INTERVAL);
 		return;
 	}
 	else if (newHeadType == CELL_TYPE_WALKABLE)
 	{
 		shiftSnakeTail();
-		setTimeout(frameLoop, UPDATE_FRAME_INTERVAL);	
 	}
 }
 
@@ -205,7 +206,7 @@ function setCellState(cell, type)
 
 function gameOver()
 {
-	clearTimeout(frameLoop);
+	clearInterval(loopInterval);
 	alert("Game Over");
 }
 
