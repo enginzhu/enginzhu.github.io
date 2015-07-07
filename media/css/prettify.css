@@ -10,7 +10,7 @@
  */
 .str
 {
-    color: #a557a6;
+    color: #E181E2;
 }
 .kwd
 {
@@ -18,7 +18,7 @@
 }
 .com
 {
-    color: #66747B;
+    color: #53ADDA;
 }
 .typ
 {
@@ -84,7 +84,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
     
   .str
   {
-      color: #a557a6;
+      color: #E181E2;
   }
   .kwd
   {
@@ -92,7 +92,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
   }
   .com
   {
-      color: #66747B;
+      color: #53ADDA;
   }
   .typ
   {
