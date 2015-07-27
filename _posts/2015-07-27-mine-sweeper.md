@@ -1,6 +1,6 @@
 ---
 layout: post
-title: HTML5 扫雷游戏
+title: HTML5 扫雷游戏 - 基于egret引擎
 categories: HTML5
 tags: game
 thread: mineSweeper
