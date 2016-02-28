@@ -1,7 +1,7 @@
 markdown: kramdown
 permalink: /:title/
 url: http://github.shanechu.com
-highlighter: pygments
+highlighter: rouge
 title: shane的随想录
 name: shane的随想录
 email: echo ZW5naW56aHVAZ21haWwuY29tCg== \| base64 -D
