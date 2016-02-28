@@ -4,7 +4,7 @@ url: http://github.shanechu.com
 highlighter: pygments
 title: shane的随想录
 name: shane的随想录
-email: echo ZW5naW56aHVAZ21haWwuY29tCg== | base64 -d
+email: echo ZW5naW56aHVAZ21haWwuY29tCg== \| base64 -D
 description: 在群体里容易按照他人的想法生活，在孤独中容易按照自己的想法生活。但值得记住的只是那些在群体中保持独立的人。
 author: shanechu
 duoshuo: shanechu
