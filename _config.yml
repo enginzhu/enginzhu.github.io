@@ -10,5 +10,7 @@ author: shanechu
 duoshuo: shanechu
 weibo: 1716213977
 hub: enginzhu
-safe: true
+safe: false
 paginate: 100
+paginate_path: "page:num"
+gems: [jekyll-paginate]
