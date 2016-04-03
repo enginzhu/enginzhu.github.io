@@ -1,9 +1,9 @@
 ---
 layout: post
 title: JavaScript 贪吃蛇游戏
+comments: true
 categories: JavaScript
 tags: game
-thread: snakegame
 ---
 
 ## 源码

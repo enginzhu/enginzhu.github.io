@@ -1,9 +1,9 @@
 ---
 layout: post
 title: HTML5 扫雷游戏 - 基于egret引擎
+comments: true
 categories: HTML5
 tags: game
-thread: mineSweeper
 ---
 
 ## 源码

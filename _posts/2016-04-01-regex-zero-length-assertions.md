@@ -1,9 +1,9 @@
 ---
 layout: post
 title: 关于正则表达式的零宽断言
+comments: true
 categories: 笔记
 tags: reading-notes
-thread: regex-zero-length-assertions
 ---
 
 ![regex]({{ site.url }}/image/regex/regex.jpg)
@@ -15,7 +15,7 @@ thread: regex-zero-length-assertions
 - **字面字符**（`literal character`）：最基本的正则匹配，比如`a`，匹配字符串中第一个出现的`a`字符。对于正则表达式的12个**元字符**（`metacharacter`）：`\*^$.|?+[]()`，如果需要当成字面量匹配，则要在字符前加反斜杠。
 - **字符组**(`character classes`)：如`[0-9]`匹配0到9之间的单个数字。
 - **排除型字符组**（`negated character classes`）：如`[^0-9\r\n]`匹配除数字和换行符以外的其他字符，包括不可见字符。
-- **点**（`dot`）：匹配除换行符意外的任意字符
+- **点**（`dot`）：匹配除换行符以外的任意字符
 
 
 ## 锚点匹配

@@ -1,9 +1,8 @@
 ---
 layout: post
 title:  "写一个简单的解释器"
-date:   2015-07-07 09:32:58
+comments: true
 categories: interpreter
-thread: build-a-simple-interpreter
 ---
 
 > **"If you don't know how compilers work, then you don't know how computers work. If you're not 100% sure whether you know how compilers work, then you don't know how they work." — Steve Yegge**

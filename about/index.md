@@ -1,7 +1,7 @@
 ---
 title: 关于
 layout: page
-comments: no
+comments: true
 ---
 
 ### 个人说明
